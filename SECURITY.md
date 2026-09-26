@@ -1,28 +1,33 @@
-# Security Policy & Responsible Disclosure
+# Security Policy
 
-## 1. Supported Versions
-| Version | Supported |
-| ------- | --------- |
-| Main Branch | :white_check_mark: |
-| < 1.0.0 | :x: |
+## Scope
+This repository contains research code and a reference implementation for studying privacy-preserving client-side processing. It should be treated as research software rather than a security-certified product.
 
-## 2. Reporting a Vulnerability
-We take the security of client-side zero-server processing seriously. If you discover a security vulnerability, side-channel leak, or CSP bypass, please report it responsibly.
+## Reporting a vulnerability
+If you identify a security vulnerability in the implementation, please report it privately to the project maintainer before publicly disclosing the issue.
 
-### Disclosure Process
-1. **DO NOT** open a public GitHub issue for security vulnerabilities.
-2. Email your findings to `security@utilvo.com` or submit a private security advisory on GitHub.
-3. Include the following details in your report:
-   - Description of the vulnerability and attack vector.
-   - Proof-of-concept (PoC) code or step-by-step reproduction steps.
-   - Impact assessment (e.g., CSP bypass, memory exposure, timing leak).
+Please include:
+* affected file or component
+* vulnerability description
+* reproduction steps
+* potential impact
+* suggested mitigation, if available
 
-### Response Timeline
-- **Acknowledgement**: Within 48 hours.
-- **Assessment & Triage**: Within 5 business days.
-- **Fix & Public Advisory**: Fixed within 30 days of verified report.
+Do not include sensitive user data in a report.
 
-## 3. Security Principles & Architecture
-- Zero Server Storage & Ingress
-- Client-Side Isolation
-- Subresource Integrity & CSP Security Rules
+## Security claims
+The project does not claim that client-side execution automatically guarantees confidentiality or eliminates all security risks.
+
+Security depends on:
+* application code
+* dependencies
+* browser security
+* operating-system security
+* network behavior
+* deployment configuration
+* supply-chain integrity
+
+## Research limitations
+The threat model is documented in [THREAT_MODEL.md](THREAT_MODEL.md).
+
+Security properties should be evaluated against the actual implementation and deployment rather than inferred solely from the architectural design.
