@@ -1,0 +1,18 @@
+cff-version: 1.2.0
+message: "If you use this paper or software benchmarks, please cite it as below."
+title: "Privacy-Preserving Client-Side Information Processing: A Browser-Based Architecture for Local Data Analysis and Secure File Handling"
+authors:
+  - family-names: "Platform Team"
+    given-names: "Utilvo"
+    affiliation: "Utilvo Platform"
+date-released: 2026-09-26
+repository-code: "https://github.com/utilvo-platform/privacy-preserving-client-side-processing"
+url: "https://utilvo.com"
+keywords:
+  - "client-side processing"
+  - "privacy"
+  - "browser architecture"
+  - "zero server latency"
+  - "pdf tools"
+  - "calculators"
+  - "unit converters"

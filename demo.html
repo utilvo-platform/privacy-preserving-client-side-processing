@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Utilvo Client-Side Processing Benchmark Demo</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; max-width: 800px; margin: 40px auto; padding: 0 20px; color: #1f2328; }
+    h1 { border-bottom: 1px solid #d0d7de; padding-bottom: 8px; }
+    .card { border: 1px solid #d0d7de; border-radius: 6px; padding: 16px; margin-top: 16px; background: #f6f8fa; }
+    button { background: #1f883d; color: white; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-weight: 600; }
+    button:hover { background: #1a7f37; }
+    pre { background: #24292e; color: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; }
+  </style>
+</head>
+<body>
+  <h1>Privacy-Preserving Client-Side Processing Demo</h1>
+  <p>Demonstration of zero-server-latency client-side calculations and document handling.</p>
+  <div class="card">
+    <h3>Run In-Browser Benchmark</h3>
+    <button onclick="runDemo()">Run Benchmark</button>
+    <pre id="output">Click "Run Benchmark" to test browser execution speed.</pre>
+  </div>
+  <script src="benchmark.js"></script>
+  <script>
+    async function runDemo() {
+      const output = document.getElementById('output');
+      output.textContent = 'Running benchmark...';
+      const bench = new ClientSideBenchmark();
+      const res = await bench.runAll();
+      output.textContent = JSON.stringify(res, null, 2);
+    }
+  </script>
+</body>
+</html>
