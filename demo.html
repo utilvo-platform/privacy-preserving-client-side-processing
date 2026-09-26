@@ -3,32 +3,51 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Utilvo Client-Side Processing Benchmark Demo</title>
+  <title>Utilvo Client-Side Processing Benchmark Demo (Academic Reproduction)</title>
   <style>
-    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; max-width: 800px; margin: 40px auto; padding: 0 20px; color: #1f2328; }
-    h1 { border-bottom: 1px solid #d0d7de; padding-bottom: 8px; }
-    .card { border: 1px solid #d0d7de; border-radius: 6px; padding: 16px; margin-top: 16px; background: #f6f8fa; }
-    button { background: #1f883d; color: white; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-weight: 600; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; max-width: 850px; margin: 40px auto; padding: 0 20px; color: #1f2328; line-height: 1.5; }
+    h1 { border-bottom: 1px solid #d0d7de; padding-bottom: 10px; font-size: 1.6rem; }
+    .subtitle { color: #57606a; font-size: 0.95rem; margin-top: -8px; margin-bottom: 24px; }
+    .card { border: 1px solid #d0d7de; border-radius: 8px; padding: 20px; margin-top: 16px; background: #f6f8fa; }
+    .badge { display: inline-block; background: #ddf4ff; color: #0969da; padding: 3px 8px; border-radius: 12px; font-size: 0.8rem; font-weight: 600; margin-right: 6px; }
+    button { background: #1f883d; color: white; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 0.95rem; transition: background 0.15s ease; }
     button:hover { background: #1a7f37; }
-    pre { background: #24292e; color: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; }
+    button:disabled { background: #8c8c8c; cursor: not-allowed; }
+    pre { background: #0d1117; color: #e6edf3; padding: 16px; border-radius: 6px; overflow-x: auto; font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace; font-size: 0.88rem; }
+    .specs { margin-top: 12px; font-size: 0.85rem; color: #57606a; background: #fff; padding: 10px 14px; border: 1px solid #e1e4e8; border-radius: 6px; }
   </style>
 </head>
 <body>
   <h1>Privacy-Preserving Client-Side Processing Demo</h1>
-  <p>Demonstration of zero-server-latency client-side calculations and document handling.</p>
+  <p class="subtitle">Academic Reproduction Testbed — Zero Server Network Ingress Verification</p>
+  
   <div class="card">
-    <h3>Run In-Browser Benchmark</h3>
-    <button onclick="runDemo()">Run Benchmark</button>
-    <pre id="output">Click "Run Benchmark" to test browser execution speed.</pre>
+    <span class="badge">N = 50 Iterations</span>
+    <span class="badge">Web Cryptography API</span>
+    <span class="badge">0 Bytes Ingress</span>
+    <h3>Run In-Browser Performance & Memory Benchmark</h3>
+    <p>Executes 50 iterations of mathematical kernel benchmarks and memory allocations, reporting mean, median, p95, and standard deviation.</p>
+    <button id="runBtn" onclick="runDemo()">Run N=50 Benchmark</button>
+    <div class="specs" id="sysSpecs">Target Environment: Initializing...</div>
+    <pre id="output">Click "Run N=50 Benchmark" to execute client-side processing test suite.</pre>
   </div>
+
   <script src="benchmark.js"></script>
   <script>
+    document.getElementById('sysSpecs').textContent = `Target Environment: ${navigator.userAgent}`;
+
     async function runDemo() {
+      const btn = document.getElementById('runBtn');
       const output = document.getElementById('output');
-      output.textContent = 'Running benchmark...';
-      const bench = new ClientSideBenchmark();
-      const res = await bench.runAll();
-      output.textContent = JSON.stringify(res, null, 2);
+      btn.disabled = true;
+      output.textContent = 'Executing N=50 benchmark iterations... Please wait.';
+      
+      setTimeout(async () => {
+        const bench = new ClientSideBenchmark(50);
+        const res = await bench.runAll();
+        output.textContent = JSON.stringify(res, null, 2);
+        btn.disabled = false;
+      }, 50);
     }
   </script>
 </body>
